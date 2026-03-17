@@ -1,0 +1,25 @@
+*{
+ font-family: Arial, Helvetica, sans-serif;   
+}
+
+a{
+    color: blueviolet;
+    text-decoration: none;
+}
+
+a:hover{
+    color: rgb(255, 0, 0);
+}
+
+img {
+    border: 2px solid black;
+    border-radius: 5%;
+}
+
+tr:nth-child(even) {
+    background-color: #b11919;
+}
+
+ul{
+    list-style-type: none;
+}
