@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  background: #eef2f7;
+  color: #2c3e50;
+}
+
+/* HEADER */
+header {
+  position: relative;
+  background: linear-gradient(135deg, #3498db, #2c3e50);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* USER MENU (top-right) */
+.user-menu {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.user-btn {
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: white;
+  cursor: pointer;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: white;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 10px;
+  min-width: 160px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: 0.2s;
+}
+
+.user-menu:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 6px;
+}
+
+.dropdown a:hover {
+  background: #f0f0f0;
+}
+
+.username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* MAIN */
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* SECTIONS */
+section {
+  margin-bottom: 1.5rem;
+}
+
+/* FILTERS */
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* RESTAURANT LIST */
+.restaurant-list {
+  display: grid;
+  gap: 12px;
+}
+
+.restaurant-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+.restaurant-card:hover {
+  transform: scale(1.02);
+}
+
+.restaurant-card.active {
+  border: 2px solid #3498db;
+}
+
+.restaurant-card.nearest {
+  border: 2px solid green;
+}
+
+/* BUTTONS */
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+/* MENU */
+.menu {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.day {
+  margin-top: 1rem;
+}
+
+.day h3 {
+  color: #3498db;
+}
+
+.menu-item {
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* MAP */
+#map {
+  height: 300px;
+  background: #ddd;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #777;
+}
+
+/* AUTH LINK (optional if you still use it somewhere) */
+.auth-link {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.auth-link a {
+  text-decoration: none;
+  background: #3498db;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.auth-link a:hover {
+  background: #2980b9;
+}
+
+/* AUTH PAGE */
+.auth-page {
+  max-width: 400px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.auth-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}
