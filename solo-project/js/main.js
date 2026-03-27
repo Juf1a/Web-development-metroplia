@@ -4,7 +4,7 @@ async function loadRestaurants() {
   const response = await fetch(url);
   const data = await response.json();
 
-  console.log(data); // see structure
+  console.log(data);
   renderRestaurants(data);
 }
 
