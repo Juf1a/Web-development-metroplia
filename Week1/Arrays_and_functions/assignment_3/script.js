@@ -12,7 +12,11 @@ while(true){
 
 for(let number of numbers){
     if(number % 2 == 0){
-        evenNumbers.push(number)
+        evenNumbers.push(Number(number))
     }
 }
-console.log(evenNumbers)
+if(evenNumbers.length === 0){
+    document.getElementById("result").innerHTML = "Even Numbers: None"
+}else{
+    document.getElementById("result").innerHTML = "Even numbers: " + evenNumbers;
+}
