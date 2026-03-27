@@ -9,16 +9,63 @@ body {
   color: #2c3e50;
 }
 
-/* HEADER */
 header {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: linear-gradient(135deg, #3498db, #2c3e50);
   color: white;
   padding: 1.5rem;
-  text-align: center;
 }
 
-/* USER MENU (top-right) */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #dcdde1;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: 0.2s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
 .user-menu {
   position: absolute;
   right: 20px;
@@ -36,7 +83,6 @@ header {
   cursor: pointer;
 }
 
-/* DROPDOWN */
 .dropdown {
   position: absolute;
   right: 0;
@@ -77,32 +123,40 @@ header {
   margin-bottom: 5px;
 }
 
-/* MAIN */
 main {
+  width: 100%;
   max-width: 1000px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
 
-/* SECTIONS */
-section {
-  margin-bottom: 1.5rem;
-}
-
-/* FILTERS */
-.filters {
+.controls {
   display: flex;
   gap: 10px;
+  align-items: center;
   flex-wrap: wrap;
 }
 
-select {
-  padding: 8px;
-  border-radius: 6px;
+.controls input {
+  flex: 2;
+  min-width: 200px;
+  padding: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
 }
 
-/* RESTAURANT LIST */
+.controls select {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.menu-toggle {
+  display: flex;
+  gap: 5px;
+}
+
 .restaurant-list {
   display: grid;
   gap: 12px;
@@ -129,7 +183,12 @@ select {
   border: 2px solid green;
 }
 
-/* BUTTONS */
+#map {
+  height: 300px;
+  background: #ddd;
+  border-radius: 10px;
+}
+
 button {
   padding: 8px 14px;
   border: none;
@@ -143,64 +202,34 @@ button:hover {
   background: #2980b9;
 }
 
-/* MENU */
-.menu {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.day {
-  margin-top: 1rem;
-}
-
-.day h3 {
-  color: #3498db;
-}
-
-.menu-item {
-  padding: 6px 0;
-  border-bottom: 1px solid #eee;
-}
-
-/* MAP */
-#map {
-  height: 300px;
-  background: #ddd;
-  border-radius: 10px;
-}
-
-/* FOOTER */
 footer {
+  width: 100%;
   text-align: center;
   padding: 1rem;
   color: #777;
+  margin-top: auto;
 }
 
-/* AUTH LINK (optional if you still use it somewhere) */
-.auth-link {
-  text-align: right;
-  margin-bottom: 1rem;
-}
-
-.auth-link a {
-  text-decoration: none;
-  background: #3498db;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-}
-
-.auth-link a:hover {
-  background: #2980b9;
-}
-
-/* AUTH PAGE */
 .auth-page {
   max-width: 400px;
   margin: 100px auto;
   text-align: center;
+}
+
+.auth-page a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #ecf0f1;
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.auth-page a:hover {
+  background: #dcdde1;
 }
 
 .auth-box {
@@ -210,16 +239,36 @@ footer {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.auth-box button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
 .auth-box input {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-/* MOBILE */
+/* MOBILE ver */
 @media (max-width: 600px) {
-  .filters {
+  
+    main {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  .header-left {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   button {

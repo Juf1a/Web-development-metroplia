@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opiskelijaravintolat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>
+      <a href="home.html" class="logo">Student restaurants</a>
+    </h1>
+
+    <nav class="nav-links">
+      <a href="#">Favorites</a>
+      <a href="#map">Map</a>
+      <a href="auth.html" class="login-btn">Login / Sign up</a>
+    </nav>
+  </div>
+
+  <div class="user-menu">
+    <button class="user-btn"></button>
+
+    <div class="dropdown">
+      <p class="username">Not logged in</p>
+      <a href="auth.html">Edit profile</a>
+      <a href="#">Logout</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<div class="controls">
+  <input type="text" id="searchInput" placeholder="Search restaurants...">
+
+  <select id="cityFilter">
+    <option value="">All cities</option>
+  </select>
+
+  <select id="providerFilter">
+    <option value="">All providers</option>
+  </select>
+  
+  <div class="menu-toggle">
+    <button>Today</button>
+    <button>Week</button>
+  </div>
+
+</div>
+
+
+  <h2>Restaurants</h2>
+  <section class="restaurant-list" id="restaurantList"></section>
+
+  <section id="favorites-section">
+  <h2>Favorites</h2>
+  <p></p>
+  </section>
+
+  <section class="map-section">
+    <h2>Map</h2>
+    <div id="map"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Student Restaurants 2026</p>
+</footer>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

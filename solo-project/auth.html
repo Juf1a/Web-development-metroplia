@@ -2,24 +2,29 @@
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <main class="auth-page">
 
-  <h1>Login / Register</h1>
+  <h1 id="authTitle">Login</h1>
 
   <div class="auth-box">
+
     <input type="text" id="username" placeholder="Username">
+    <input type="email" id="email" placeholder="Email" style="display: none;">
     <input type="password" id="password" placeholder="Password">
 
-    <button onclick="login()">Login</button>
-    <button onclick="register()">Register</button>
+    <button id="authButton" onclick="login()">Login</button>
+
+    <p id="switchText">Don't have an account?<a href="#" onclick="showRegister()">Register</a></p>
+
   </div>
 
-  <a href="index.html">← Back</a>
+  <a href="home.html" class="back-btn">← Back</a>
 
 </main>
 
