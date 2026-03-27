@@ -774,14 +774,13 @@ const restaurants = [
 navigator.geolocation.getCurrentPosition(function(position) {
   const userLatitude = position.coords.latitude;
   const userLongtitude = position.coords.longitude;
+  const table = document.querySelector("table")
 
   restaurants.forEach(function(restaurant) {
     const restaurantLng = restaurant.location.coordinates[0];
     const restaurantLat = restaurant.location.coordinates[1];
 
-    const distance = Math.sqrt(
-      (restaurantLat - userLatitude) ** 2 + (restaurantLng - userLongtitude) ** 2
-    )
+    let distance = Math.sqrt((restaurantLat - userLatitude) ** 2 + (restaurantLng - userLongtitude) ** 2)
 
     restaurant.distance = distance;
   });
@@ -790,5 +789,19 @@ navigator.geolocation.getCurrentPosition(function(position) {
     return a.distance - b.distance;
   });
 
-  console.log(restaurants);
+  restaurants.forEach(function(item){
+    const tr = document.createElement("tr");
+
+    const name = document.createElement("td");
+    name.textContent = item.name;
+
+    const address = document.createElement("td");
+    address.textContent = item.address;
+
+    tr.appendChild(name)
+    tr.appendChild(address)
+
+    table.appendChild(tr)
+  })
+  
 });

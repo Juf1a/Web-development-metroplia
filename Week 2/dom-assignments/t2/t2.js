@@ -35,6 +35,7 @@ todoList.forEach(function(item){
   const label = document.createElement("label");
   const input = document.createElement("input");
   label.textContent = item.task;
+  label.htmlFor = "todo-" + item.id;
   input.type = "checkbox";
   input.checked = item.completed;
   input.id = "todo-" + item.id;

@@ -771,3 +771,26 @@ const restaurants = [
 ];
 
 // your code here
+const map = L.map('map').setView([60.1699, 24.9384], 9);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+
+restaurants.forEach(function(restaurant){
+
+  const h3 = document.createElement("h3");
+  const p = document.createElement("p");
+
+  const ing = restaurant.location.coordinates[0];
+  const lat = restaurant.location.coordinates[1];
+
+  const location = L.marker([lat, ing]).addTo(map);
+
+  h3.textContent = restaurant.name;
+  p.textContent = restaurant.address
+
+  const combine = document.createElement("div");
+  combine.appendChild(h3)
+  combine.appendChild(p);
+
+  location.bindPopup(combine)
+})
