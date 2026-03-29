@@ -771,11 +771,11 @@ const restaurants = [
 ];
 
 // your code here
-// your code here
 const table = document.querySelector("table");
 const dialog = document.querySelector("dialog");
 
 restaurants.forEach(function(item){
+
   const tr = document.createElement("tr");
   const name = document.createElement("td");
   const address = document.createElement("td");
@@ -786,7 +786,6 @@ restaurants.forEach(function(item){
   tr.append(name, address);
   table.appendChild(tr);
 
-  // moved click handler here
   tr.addEventListener("click", function () {
 
     table.querySelectorAll("tr").forEach(function(row){
@@ -795,10 +794,9 @@ restaurants.forEach(function(item){
 
     tr.classList.add("highlight");
 
-    // modal content
     dialog.innerHTML = "";
 
-    const n = document.createElement("p");
+    const r = document.createElement("p");
     n.textContent = "Restaurant name: " + item.name;
 
     const a = document.createElement("p");
@@ -816,7 +814,7 @@ restaurants.forEach(function(item){
     const company = document.createElement("p");
     company.textContent = "Company: " + item.company;
 
-    dialog.append(n, a, pc, city, phone, company);
+    dialog.append(r, a, pc, city, phone, company);
 
     dialog.showModal();
   });
