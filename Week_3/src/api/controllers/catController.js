@@ -1,4 +1,5 @@
 import {searchCatbyId, addCat, allCatItems } from "../models/catModel.js";
+import multer from 'multer';
 
 const getAllCats = (req, res) => {
     res.json(allCatItems())
@@ -14,7 +15,16 @@ const getCatById = (req, res) => {
 };
 
 const postCat = (req, res) => {
-  const result = addCat(req.body);
+
+  console.log(req.body);
+  console.log(req.file)
+
+  const catData = {
+    ...req.body,
+    filename: req.file ? req.file.filename : null
+  };
+
+  const result = addCat(catData);
   if (result.cat_id) {
     res.status(201);
     res.json({ message: 'New cat added.', result });
