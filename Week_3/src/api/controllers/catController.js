@@ -1,44 +1,49 @@
-import {searchCatbyId, addCat, allCatItems } from "../models/catModel.js";
-import multer from 'multer';
+import {
+  getAllCats,
+  getCatById,
+  addCat,
+  getCatsByUser
+} from "../models/catModel.js";
 
-const getAllCats = (req, res) => {
-    res.json(allCatItems())
+const catList = async (req, res) => {
+  const cats = await getAllCats();
+  res.json(cats);
 };
 
-const getCatById = (req, res) => {
-  const cat = searchCatbyId(req.params.id);
-  if (cat) {
-    res.json(cat);
-  } else {
-    res.sendStatus(404);
+const catById = async (req, res) => {
+  const cat = await getCatById(req.params.id);
+
+  if (!cat) {
+    return res.sendStatus(404);
   }
+  res.json(cat);
 };
 
-const postCat = (req, res) => {
-
-  console.log(req.body);
-  console.log(req.file)
-
+const postCat = async (req, res) => {
   const catData = {
     ...req.body,
     filename: req.file ? req.file.filename : null
   };
 
-  const result = addCat(catData);
-  if (result.cat_id) {
-    res.status(201);
-    res.json({ message: 'New cat added.', result });
-  } else {
-    res.sendStatus(400);
-  }
+  const id = await addCat(catData);
+
+  res.status(201).json({
+    message: 'New cat added.',
+    cat_id: id
+  });
 };
 
-const putCat = (req, res) => {
-    res.json({ message: 'Cat item updated.' });
+const putCat = async (req, res) => {
+  res.json({ message: 'Cat item updated.' });
 };
 
-const deleteCat = (req, res) => {
-    res.json({ message: 'Cat item deleted.' });
+const deleteCat = async (req, res) => {
+  res.json({ message: 'Cat item deleted.' });
 };
 
-export {getAllCats, getCatById, postCat, putCat, deleteCat};
+export const catsByUser = async (req, res) => {
+  const cats = await getCatsByUser(req.params.id);
+  res.json(cats);
+};
+
+export { catList, catById, postCat, putCat, deleteCat };

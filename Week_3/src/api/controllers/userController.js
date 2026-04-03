@@ -1,34 +1,41 @@
-import {searchUserbyId, addUser, allUserItems } from "../models/userModel.js";
+import {
+  searchUserbyId,
+  addUser,
+  allUserItems,
+  deleteUser as deleteUserModel
+} from "../models/userModel.js";
 
-const getAllUsers = (req, res) => {
-    res.json(allUserItems())
+const getAllUsers = async (req, res) => {
+  const users = await allUserItems();
+  res.json(users);
 };
 
-const getUserById = (req, res) => {
-  const User = searchUserbyId(req.params.id);
-  if (User) {
-    res.json(User);
+const getUserById = async (req, res) => {
+  const user = await searchUserbyId(req.params.id);
+
+  if (user) {
+    res.json(user);
   } else {
     res.sendStatus(404);
   }
 };
 
-const postUser = (req, res) => {
-  const result = addUser(req.body);
-  if (result.user_id) {
-    res.status(201);
-    res.json({ message: 'New User added.', result });
-  } else {
-    res.sendStatus(400);
-  }
+const postUser = async (req, res) => {
+  const result = await addUser(req.body);
+
+  res.status(201).json({
+    message: 'New User added.',
+    result
+  });
 };
 
-const putUser = (req, res) => {
-    res.json({ message: 'User item updated.' });
+const putUser = async (req, res) => {
+  res.json({ message: 'User item updated.' });
 };
 
-const deleteUser = (req, res) => {
-    res.json({ message: 'User item deleted.' });
+const deleteUser = async (req, res) => {
+  await deleteUserModel(req.params.id);
+  res.json({ message: 'User item deleted.' });
 };
 
-export {getAllUsers, getUserById, postUser, putUser, deleteUser};
+export { getAllUsers, getUserById, postUser, putUser, deleteUser };
