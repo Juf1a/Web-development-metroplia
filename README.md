@@ -1,13 +1,21 @@
-Week1/
-Exercises and assignments from Week 1.
-Week2/
-Exercises and assignments from Week 2.
-solo-project/
-Independent project applying concepts learned during the course.
+Web Development Course
 
-📌 Topics Covered
-Arrays and functions
-Higher-order functions (map, filter, some, every)
-Modern JavaScript syntax (??, ?., ||, &&)
+This repository contains exercises and projects from the Web Development course.
+
+📂 Structure
+Week1/ – Basics
+Week2/ – JavaScript & DOM
+Week3/ – Backend (Express, MySQL, auth, validation)
+solo-project/ – Independent project
+
+📌 Topics
+JavaScript fundamentals
+Higher-order functions
 DOM manipulation
-Basic web app structure
+REST APIs with Express
+MySQL integration
+Authentication (JWT, bcrypt)
+Validation & error handling
+
+Notes
+uploads/ and .env are ignored
