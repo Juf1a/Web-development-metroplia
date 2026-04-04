@@ -14,6 +14,18 @@ app.use('/api/v1/cats', catRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
 
+// Simple error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  // Handle validation errors
+  if (err.errors) {
+    return res.status(400).json({ message: 'Validation failed', errors: err.errors });
+  }
+
+  res.status(err.status || 500).json({ message: err.message || 'Something went wrong' });
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

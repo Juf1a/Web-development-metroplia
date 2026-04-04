@@ -7,94 +7,143 @@ import {
 } from "../models/userModel.js";
 import bcrypt from 'bcrypt';
 
-const getAllUsers = async (req, res) => {
-  if (!res.locals.user) {
-    return res.sendStatus(401);
+const getAllUsers = async (req, res, next) => {
+  try {
+    if (!res.locals.user) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
+    if (res.locals.user.role !== 'admin') {
+      const err = new Error('Forbidden');
+      err.status = 403;
+      return next(err);
+    }
+
+    const users = await allUserItems();
+    const usersWithoutPasswords = users.map(({ password, ...user }) => user);
+    res.json(usersWithoutPasswords);
+  } catch (err) {
+    next(err);
   }
-
-  if (res.locals.user.role !== 'admin') {
-    return res.sendStatus(403);
-  }
-
-  const users = await allUserItems();
-  const usersWithoutPasswords = users.map(({ password, ...user }) => user);
-
-  res.json(usersWithoutPasswords);
 };
 
-const getUserById = async (req, res) => {
-  if (!res.locals.user) return res.sendStatus(401);
+const getUserById = async (req, res, next) => {
+  try {
+    if (!res.locals.user) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
 
-  const currentUserId = Number(res.locals.user.user_id);
-  const targetUserId = Number(req.params.id);
+    const currentUserId = Number(res.locals.user.user_id);
+    const targetUserId = Number(req.params.id);
 
-  if (res.locals.user.role !== 'admin' && currentUserId !== targetUserId) {
-    return res.sendStatus(403);
+    if (res.locals.user.role !== 'admin' && currentUserId !== targetUserId) {
+      const err = new Error('Forbidden');
+      err.status = 403;
+      return next(err);
+    }
+
+    const user = await searchUserbyId(targetUserId);
+
+    if (!user) {
+      const err = new Error('User not found');
+      err.status = 404;
+      return next(err);
+    }
+
+    const { password, ...userWithoutPassword } = user;
+    res.json(userWithoutPassword);
+  } catch (err) {
+    next(err);
   }
-
-  const user = await searchUserbyId(targetUserId);
-
-  if (!user) return res.sendStatus(404);
-
-  const { password, ...userWithoutPassword } = user;
-  res.json(userWithoutPassword);
 };
 
-const postUser = async (req, res) => {
-  req.body.password = bcrypt.hashSync(req.body.password, 10);
+const postUser = async (req, res, next) => {
+  try {
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
 
-  const result = await addUser(req.body);
+    const result = await addUser(req.body);
 
-  const { password, ...userWithoutPassword } = result;
+    const { password, ...userWithoutPassword } = result;
 
-  res.status(201).json({
-    message: 'New User added.',
-    result: userWithoutPassword
-  });
+    res.status(201).json({
+      message: 'New User added.',
+      result: userWithoutPassword
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
-const putUser = async (req, res) => {
-  if (!res.locals.user) return res.sendStatus(401);
+const putUser = async (req, res, next) => {
+  try {
+    if (!res.locals.user) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
 
-  const targetUserId = Number(req.params.id);
-  const currentUserId = Number(res.locals.user.user_id);
+    const targetUserId = Number(req.params.id);
+    const currentUserId = Number(res.locals.user.user_id);
 
-  if (res.locals.user.role !== 'admin' && currentUserId !== targetUserId) {
-    return res.sendStatus(403);
+    if (res.locals.user.role !== 'admin' && currentUserId !== targetUserId) {
+      const err = new Error('Forbidden');
+      err.status = 403;
+      return next(err);
+    }
+
+    const updates = { ...req.body };
+
+    if (updates.password) {
+      updates.password = bcrypt.hashSync(updates.password, 10);
+    }
+
+    const result = await updateUser(targetUserId, updates, res.locals.user);
+
+    if (!result || result.affectedRows === 0) {
+      const err = new Error('User not found');
+      err.status = 404;
+      return next(err);
+    }
+
+    res.json({ message: 'User item updated.' });
+  } catch (err) {
+    next(err);
   }
-
-  const updates = { ...req.body };
-
-  if (updates.password) {
-    updates.password = bcrypt.hashSync(updates.password, 10);
-  }
-
-  const result = await updateUser(targetUserId, updates, res.locals.user);
-
-  if (!result || result.affectedRows === 0) {
-    return res.sendStatus(404);
-  }
-
-  res.json({ message: 'User item updated.' });
 };
 
-const deleteUser = async (req, res) => {
-  if (!res.locals.user) return res.sendStatus(401);
+const deleteUser = async (req, res, next) => {
+  try {
+    if (!res.locals.user) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
 
-  const targetUserId = Number(req.params.id);
-  const currentUserId = Number(res.locals.user.user_id);
+    const targetUserId = Number(req.params.id);
+    const currentUserId = Number(res.locals.user.user_id);
 
-  if (res.locals.user.role !== 'admin' && currentUserId !== targetUserId) {
-    return res.sendStatus(403);
+    if (res.locals.user.role !== 'admin' && currentUserId !== targetUserId) {
+      const err = new Error('Forbidden');
+      err.status = 403;
+      return next(err);
+    }
+
+    const result = await deleteUserModel(targetUserId, res.locals.user);
+
+    if (!result || result.affectedRows === 0) {
+      const err = new Error('User not found');
+      err.status = 404;
+      return next(err);
+    }
+
+    res.json({ message: 'User item deleted.' });
+  } catch (err) {
+    next(err);
   }
-
-  const result = await deleteUserModel(targetUserId, res.locals.user);
-
-  if (!result || result.affectedRows === 0) {
-    return res.sendStatus(404);
-  }
-
-  res.json({ message: 'User item deleted.' });
 };
 
 export { getAllUsers, getUserById, postUser, putUser, deleteUser };
