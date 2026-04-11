@@ -36,8 +36,8 @@ const mediaArray = [
 ];
 
 import { useState } from "react";
-import MediaRow from "./MediaRow";
-import SingleView from "./SingleView";
+import MediaRow from "../components/MediaRow.jsx";
+import SingleView from "../components/SingleView.jsx";
 
 
 
