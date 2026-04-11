@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const MediaRow = (props) => {
   const { item, selectedItem, setSelectedItem } = props;
 
@@ -14,17 +16,7 @@ const MediaRow = (props) => {
       <td>{item.created_at}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
-      <td>
-        <button
-          type="button"
-          onClick={(event) => {
-            event.stopPropagation();
-            setSelectedItem(item);
-          }}
-        >
-          View
-        </button>
-      </td>
+      <td><Link to="/single" state={{item}}>Show</Link></td>
     </tr>
   );
 };
