@@ -18,3 +18,4 @@ If you are developing a production application, we recommend using TypeScript wi
 Open (https://users.metropolia.fi/~mikel/wsk-routing/) to view it in the browser. (first lab task)
 Open (https://users.metropolia.fi/~mikel/hooks/) to view it in the browser. (second lab task)
 Open (https://users.metropolia.fi/~mikel/custom-hooks/) to view it in browser. (custom-hooks assignment)
+Open (https://users.metropolia.fi/~mikel/forms/) to view it in browser. (forms)
