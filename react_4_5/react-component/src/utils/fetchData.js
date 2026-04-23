@@ -1,6 +1,9 @@
-const fetchData = async (url) => {
-  const response = await fetch(url);
+const fetchData = async (url, options = {}) => {
+  const response = await fetch(url, options);
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong');
+  }
   return data;
 };
 
