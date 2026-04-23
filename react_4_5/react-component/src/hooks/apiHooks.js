@@ -23,11 +23,11 @@ const useMedia = () => {
     const mediaObject = {
       title: inputs.title,
       description: inputs.description,
-      filename: file.filename,
-      media_type: file.media_type,
-      filesize: file.filesize,
+      filename: file.data.filename,
+      media_type: file.data.media_type,
+      filesize: file.data.filesize,
     };
-    const fetchOptions = {
+const fetchOptions = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
