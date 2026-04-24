@@ -40,7 +40,6 @@ const UserProvider = ({ children }) => {
       if (token) {
         const userResult = await getUserByToken(token);
         setUser(userResult.user);
-        console.log('location', location);
         navigate(location.pathname);
       }
     } catch (e) {

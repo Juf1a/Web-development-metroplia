@@ -12,8 +12,7 @@ const RegisterForm = () => {
 
   const doRegister = async () => {
     try {
-      const result = await postUser(inputs);
-      console.log(result);
+      await postUser(inputs);
       alert('Registration successful! You can now login.');
     } catch (e) {
       alert(e.message);
@@ -25,10 +24,11 @@ const RegisterForm = () => {
   return (
     <>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="registeruser">Username</label>
           <input
+            className="my-2.5 p-2.5 border border-[#ccc] rounded bg-[#1a1a1a] text-white"
             name="username"
             type="text"
             id="registeruser"
@@ -36,9 +36,10 @@ const RegisterForm = () => {
             autoComplete="username"
           />
         </div>
-        <div>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="registeremail">Email</label>
           <input
+            className="my-2.5 p-2.5 border border-[#ccc] rounded bg-[#1a1a1a] text-white"
             name="email"
             type="email"
             id="registeremail"
@@ -46,9 +47,10 @@ const RegisterForm = () => {
             autoComplete="email"
           />
         </div>
-        <div>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="registerpassword">Password</label>
           <input
+            className="my-2.5 p-2.5 border border-[#ccc] rounded bg-[#1a1a1a] text-white"
             name="password"
             type="password"
             id="registerpassword"
@@ -56,7 +58,12 @@ const RegisterForm = () => {
             autoComplete="new-password"
           />
         </div>
-        <button type="submit">Register</button>
+        <button
+          className="my-2.5 px-4 py-2 rounded bg-[#363636] text-white border-none cursor-pointer hover:bg-[#111111]"
+          type="submit"
+        >
+          Register
+        </button>
       </form>
     </>
   );

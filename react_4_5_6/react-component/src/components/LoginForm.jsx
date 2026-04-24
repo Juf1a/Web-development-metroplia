@@ -22,10 +22,11 @@ const LoginForm = () => {
   return (
     <>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="loginuser">Username</label>
           <input
+            className="my-2.5 p-2.5 border border-[#ccc] rounded bg-[#1a1a1a] text-white"
             name="username"
             type="text"
             id="loginuser"
@@ -33,9 +34,10 @@ const LoginForm = () => {
             autoComplete="username"
           />
         </div>
-        <div>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="loginpassword">Password</label>
           <input
+            className="my-2.5 p-2.5 border border-[#ccc] rounded bg-[#1a1a1a] text-white"
             name="password"
             type="password"
             id="loginpassword"
@@ -43,7 +45,12 @@ const LoginForm = () => {
             autoComplete="current-password"
           />
         </div>
-        <button type="submit">Login</button>
+        <button
+          className="my-2.5 px-4 py-2 rounded bg-[#363636] text-white border-none cursor-pointer hover:bg-[#111111]"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </>
   );

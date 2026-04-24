@@ -12,25 +12,25 @@ const Layout = () => {
   return (
     <div>
       <nav>
-        <ul>
+        <ul className="flex justify-end list-none m-0 p-0 overflow-hidden bg-[#333333]">
           <li>
-            <Link to="/">Home</Link>
+            <Link className="block text-white text-center p-4 no-underline hover:bg-[#111111]" to="/">Home</Link>
           </li>
           {user ? (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link className="block text-white text-center p-4 no-underline hover:bg-[#111111]" to="/profile">Profile</Link>
               </li>
               <li>
-                <Link to="/upload">Upload</Link>
+                <Link className="block text-white text-center p-4 no-underline hover:bg-[#111111]" to="/upload">Upload</Link>
               </li>
               <li>
-                <Link to="/logout">Logout</Link>
+                <Link className="block text-white text-center p-4 no-underline hover:bg-[#111111]" to="/logout">Logout</Link>
               </li>
             </>
           ) : (
             <li>
-              <Link to="/login">Login</Link>
+              <Link className="block text-white text-center p-4 no-underline hover:bg-[#111111]" to="/login">Login</Link>
             </li>
           )}
         </ul>

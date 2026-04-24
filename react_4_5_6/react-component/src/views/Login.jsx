@@ -8,7 +8,10 @@ const Login = () => {
   return (
     <>
       {showRegister ? <RegisterForm /> : <LoginForm />}
-      <button onClick={() => setShowRegister(!showRegister)}>
+      <button
+        className="my-2.5 px-4 py-2 rounded bg-[#363636] text-white border-none cursor-pointer hover:bg-[#111111]"
+        onClick={() => setShowRegister(!showRegister)}
+      >
         {showRegister ? 'Back to Login' : 'Create an account'}
       </button>
     </>
