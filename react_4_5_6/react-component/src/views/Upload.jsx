@@ -18,7 +18,6 @@ const Upload = () => {
     try {
       const token = localStorage.getItem('token');
       const fileResult = await postFile(file, token);
-      console.log('file uploaded:', fileResult);
       await postMedia(fileResult, inputs, token);
       navigate('/');
     } catch (e) {
@@ -31,7 +30,6 @@ const Upload = () => {
 
   const handleFileChange = (evt) => {
     if (evt.target.files) {
-      console.log(evt.target.files[0]);
       setFile(evt.target.files[0]);
     }
   };
@@ -39,28 +37,31 @@ const Upload = () => {
   return (
     <>
       <h1>Upload</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="title">Title</label>
           <input
+            className="my-2.5 p-2.5 border border-[#ccc] rounded bg-[#1a1a1a] text-white"
             name="title"
             type="text"
             id="title"
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="description">Description</label>
           <textarea
+            className="my-2.5 p-2.5 border border-[#ccc] rounded bg-[#1a1a1a] text-white"
             name="description"
             rows={5}
             id="description"
             onChange={handleInputChange}
           ></textarea>
         </div>
-        <div>
+        <div className="flex flex-col w-4/5">
           <label htmlFor="file">File</label>
           <input
+            className="my-2.5"
             name="file"
             type="file"
             id="file"
@@ -69,11 +70,12 @@ const Upload = () => {
           />
         </div>
         <img
+          className="w-[200px] h-[200px] object-cover rounded my-2.5"
           src={file ? URL.createObjectURL(file) : 'https://placehold.co/200?text=Choose+image'}
           alt="preview"
-          width="200"
         />
         <button
+          className="my-2.5 px-4 py-2 rounded bg-[#363636] text-white border-none cursor-pointer hover:bg-[#111111] disabled:opacity-40 disabled:cursor-default"
           type="submit"
           disabled={file && inputs.title.length > 3 ? false : true}
         >

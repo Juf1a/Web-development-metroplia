@@ -10,16 +10,17 @@ const Home = () => {
   return (
     <>
       <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
-      <table>
+      <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th>Thumbnail</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created</th>
-            <th>Size</th>
-            <th>Type</th>
-            <th>Owner</th>
+            <th className="p-4 border border-[#ccc] text-center">Thumbnail</th>
+            <th className="p-4 border border-[#ccc] text-center">Title</th>
+            <th className="p-4 border border-[#ccc] text-center">Description</th>
+            <th className="p-4 border border-[#ccc] text-center">Created</th>
+            <th className="p-4 border border-[#ccc] text-center">Size</th>
+            <th className="p-4 border border-[#ccc] text-center">Type</th>
+            <th className="p-4 border border-[#ccc] text-center">Owner</th>
+            <th className="p-4 border border-[#ccc] text-center"></th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@ const Home = () => {
             <MediaRow
               key={mediaItem.media_id}
               item={mediaItem}
+              selectedItem={selectedItem}
               setSelectedItem={setSelectedItem}
             />
           ))}
