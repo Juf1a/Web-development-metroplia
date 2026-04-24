@@ -1,11 +1,20 @@
-import React from 'react'
+import { useUserContext } from '../hooks/contextHooks';
 
-function Profile() {
+const Profile = () => {
+  const { user } = useUserContext();
+
   return (
     <div>
-      <h1>Profile Page</h1>
+      <h1>Profile</h1>
+      {user && (
+        <>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+          <p>User ID: {user.user_id}</p>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
