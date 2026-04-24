@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Restaurants</title>
+  <title>Restaurant</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
       <a href="home.html" class="logo">Student Restaurants</a>
     </h1>
     <nav class="nav-links">
-      <a href="home.html" class="nav-active">Restaurants</a>
+      <a href="home.html">Restaurants</a>
       <a href="favorites.html">Favorites</a>
       <a href="map.html">Map</a>
     </nav>
@@ -35,29 +35,36 @@
 </header>
 
 <main>
-  <div class="controls">
-    <input type="text" id="searchInput" placeholder="Search restaurants...">
-    <select id="cityFilter">
-      <option value="">All cities</option>
-    </select>
-    <select id="providerFilter">
-      <option value="">All providers</option>
-    </select>
+  <a href="home.html" class="back-btn">← Back</a>
+
+  <div class="detail-top">
+    <div class="detail-info">
+      <h2 id="detailName">Restaurant Name</h2>
+      <p id="detailAddress">Address</p>
+      <p id="detailCity">City</p>
+      <p id="detailCompany">Provider</p>
+      <button class="fav-btn" id="favBtn">&#9733; Add to Favorites</button>
+    </div>
+
+    <div id="map" class="detail-map"></div>
+  </div>
+
+  <div class="menu-section">
     <div class="menu-toggle">
       <button class="active">Today</button>
       <button>Week</button>
     </div>
+    <div class="menu-content" id="menuContent">
+      <p class="empty-msg">Select a day to see the menu.</p>
+    </div>
   </div>
-
-  <h2>Restaurants</h2>
-  <section class="restaurant-list" id="restaurantList"></section>
 </main>
 
 <footer>
   <p>Student Restaurants 2026</p>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/restaurant.js"></script>
 
 </body>
 </html>

@@ -66,6 +66,12 @@ header {
   width: 100%;
 }
 
+.nav-active {
+  color: white !important;
+  border-bottom: 2px solid white;
+  padding-bottom: 2px;
+}
+
 .user-menu {
   position: absolute;
   right: 20px;
@@ -74,7 +80,6 @@ header {
 }
 
 .user-btn {
-  font-size: 20px;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -93,7 +98,6 @@ header {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   padding: 10px;
   min-width: 160px;
-
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -157,8 +161,14 @@ main {
   gap: 5px;
 }
 
+.menu-toggle button.active {
+  background: #1a6fa8;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
 .restaurant-list {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 12px;
 }
 
@@ -175,18 +185,47 @@ main {
   transform: scale(1.02);
 }
 
-.restaurant-card.active {
-  border: 2px solid #3498db;
-}
-
 .restaurant-card.nearest {
   border: 2px solid green;
 }
 
-#map {
-  height: 300px;
-  background: #ddd;
-  border-radius: 10px;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.card-header h3 {
+  margin: 0;
+}
+
+.card-fav-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #ccc;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.2s, transform 0.15s;
+}
+
+.card-fav-btn:hover {
+  color: #f39c12;
+  transform: scale(1.2);
+  background: none;
+}
+
+.card-fav-btn.faved {
+  color: #f39c12;
+}
+
+.card-company {
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
 }
 
 button {
@@ -202,6 +241,85 @@ button:hover {
   background: #2980b9;
 }
 
+.empty-msg {
+  color: #999;
+  font-style: italic;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* restaurant detail page */
+.detail-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.detail-info {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.detail-info h2 {
+  margin-top: 0;
+}
+
+.detail-info p {
+  color: #555;
+  margin: 0.4rem 0;
+}
+
+.fav-btn {
+  margin-top: 1rem;
+  background: #f39c12;
+}
+
+.fav-btn:hover {
+  background: #e67e22;
+}
+
+.fav-btn.faved {
+  background: #e67e22;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.detail-map {
+  height: 280px;
+  background: #ddd;
+  border-radius: 12px;
+}
+
+.menu-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.menu-content {
+  margin-top: 1rem;
+}
+
+/* map page */
+.full-map {
+  height: 600px;
+  background: #ddd;
+  border-radius: 12px;
+}
+
 footer {
   width: 100%;
   text-align: center;
@@ -210,6 +328,7 @@ footer {
   margin-top: auto;
 }
 
+/* auth page */
 .auth-page {
   max-width: 400px;
   margin: 100px auto;
@@ -249,12 +368,12 @@ footer {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-/* MOBILE ver */
 @media (max-width: 600px) {
-  
-    main {
+  main {
     max-width: 100%;
     margin: 0;
     padding: 1rem;
@@ -273,5 +392,17 @@ footer {
 
   button {
     width: 100%;
+  }
+
+  .detail-top {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-map {
+    height: 220px;
+  }
+
+  .full-map {
+    height: 400px;
   }
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Restaurants</title>
+  <title>Map</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,9 +14,9 @@
       <a href="home.html" class="logo">Student Restaurants</a>
     </h1>
     <nav class="nav-links">
-      <a href="home.html" class="nav-active">Restaurants</a>
+      <a href="home.html">Restaurants</a>
       <a href="favorites.html">Favorites</a>
-      <a href="map.html">Map</a>
+      <a href="map.html" class="nav-active">Map</a>
     </nav>
   </div>
 
@@ -35,29 +35,15 @@
 </header>
 
 <main>
-  <div class="controls">
-    <input type="text" id="searchInput" placeholder="Search restaurants...">
-    <select id="cityFilter">
-      <option value="">All cities</option>
-    </select>
-    <select id="providerFilter">
-      <option value="">All providers</option>
-    </select>
-    <div class="menu-toggle">
-      <button class="active">Today</button>
-      <button>Week</button>
-    </div>
-  </div>
-
-  <h2>Restaurants</h2>
-  <section class="restaurant-list" id="restaurantList"></section>
+  <h2>All Restaurants on Map</h2>
+  <div id="map" class="full-map"></div>
 </main>
 
 <footer>
   <p>Student Restaurants 2026</p>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/map.js"></script>
 
 </body>
 </html>
