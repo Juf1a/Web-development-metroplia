@@ -836,6 +836,20 @@ footer {
     flex: 1;
   }
 
+  .menu-item {
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+
+  .menu-item-name {
+    width: 100%;
+  }
+
+  .menu-item-price {
+    white-space: normal;
+    font-size: 0.8rem;
+  }
+
   .detail-top {
     grid-template-columns: 1fr;
   }
