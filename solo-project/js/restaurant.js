@@ -111,9 +111,8 @@ async function loadRestaurant() {
 
   const favBtn = document.getElementById("favBtn");
 
-  if (!getCurrentUser()) {
-    favBtn.style.display = "none";
-  } else {
+  if (getCurrentUser()) {
+    favBtn.style.display = "";
     updateFavBtn(favBtn, getFavorites().includes(r._id));
     favBtn.addEventListener("click", () => {
       toggleFavorite(r._id);
