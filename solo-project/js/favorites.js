@@ -1,18 +1,7 @@
 const API_URL = "https://media2.edu.metropolia.fi/restaurant/api/v1/restaurants";
 
-function getFavorites() {
-  return JSON.parse(localStorage.getItem("favorites") || "[]");
-}
-
-function toggleFavorite(id) {
-  const favorites = getFavorites();
-  const index = favorites.indexOf(id);
-  if (index === -1) {
-    favorites.push(id);
-  } else {
-    favorites.splice(index, 1);
-  }
-  localStorage.setItem("favorites", JSON.stringify(favorites));
+if (!getCurrentUser()) {
+  window.location.href = 'auth.html';
 }
 
 function renderCard(r, container) {

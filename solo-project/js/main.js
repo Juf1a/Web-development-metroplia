@@ -1,5 +1,6 @@
 const API_URL = "https://media2.edu.metropolia.fi/restaurant/api/v1/restaurants";
 
+// keep all restaurants in memory so filtering doesn't need extra fetches
 let allRestaurants = [];
 
 async function loadRestaurants() {
@@ -10,6 +11,7 @@ async function loadRestaurants() {
 }
 
 function populateFilters(restaurants) {
+  // filter(Boolean) drops any null/undefined cities before deduplicating
   const cities = [...new Set(restaurants.map(r => r.city).filter(Boolean))].sort();
   const providers = [...new Set(restaurants.map(r => r.company).filter(Boolean))].sort();
 
@@ -46,21 +48,6 @@ function applyFilters() {
   renderRestaurants(filtered);
 }
 
-function getFavorites() {
-  return JSON.parse(localStorage.getItem("favorites") || "[]");
-}
-
-function toggleFavorite(id) {
-  const favorites = getFavorites();
-  const index = favorites.indexOf(id);
-  if (index === -1) {
-    favorites.push(id);
-  } else {
-    favorites.splice(index, 1);
-  }
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-}
-
 function renderRestaurants(restaurants) {
   const container = document.getElementById("restaurantList");
   container.innerHTML = "";
@@ -80,7 +67,7 @@ function renderRestaurants(restaurants) {
     card.innerHTML = `
       <div class="card-header">
         <h3>${r.name}</h3>
-        <button class="card-fav-btn ${isFav ? "faved" : ""}" data-id="${r._id}" title="Add to favorites">
+        <button class="card-fav-btn ${isFav ? "faved" : ""} ${getCurrentUser() ? "" : "fav-hidden"}" data-id="${r._id}" title="Add to favorites">
           ${isFav ? "&#9733;" : "&#9734;"}
         </button>
       </div>
@@ -91,6 +78,10 @@ function renderRestaurants(restaurants) {
 
     card.querySelector(".card-fav-btn").addEventListener("click", (e) => {
       e.stopPropagation();
+      if (!getCurrentUser()) {
+        showToast("Please log in to save favorites.");
+        return;
+      }
       const btn = e.currentTarget;
       const id = btn.dataset.id;
       toggleFavorite(id);
@@ -106,6 +97,7 @@ function renderRestaurants(restaurants) {
     container.appendChild(card);
   });
 }
+
 
 document.getElementById("searchInput").addEventListener("input", applyFilters);
 document.getElementById("cityFilter").addEventListener("change", applyFilters);
