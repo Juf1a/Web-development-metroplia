@@ -4,8 +4,13 @@ function getCurrentUser() {
   return JSON.parse(localStorage.getItem('currentUser') || 'null');
 }
 
+function favKey() {
+  const user = getCurrentUser();
+  return user ? 'favorites_' + user.username : 'favorites_guest';
+}
+
 function getFavorites() {
-  return JSON.parse(localStorage.getItem('favorites') || '[]');
+  return JSON.parse(localStorage.getItem(favKey()) || '[]');
 }
 
 function toggleFavorite(id) {
@@ -16,7 +21,7 @@ function toggleFavorite(id) {
   } else {
     favorites.splice(index, 1);
   }
-  localStorage.setItem('favorites', JSON.stringify(favorites));
+  localStorage.setItem(favKey(), JSON.stringify(favorites));
 }
 
 function logout() {
